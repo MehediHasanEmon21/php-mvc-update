@@ -2,11 +2,18 @@
 
 namespace App\Controllers;
 
+use App\Models\Post;
+use Core\View;
+
 class Posts extends  \Core\Controller {
 
     public function indexAction()
-    {
-        echo 'Post Index';
+    {   
+        $posts = Post::getAll();
+        
+        View::renderTemplate('Post/index.html',[
+            'posts' => $posts
+        ]);
     }
 
     public function addNewAction()
@@ -16,7 +23,6 @@ class Posts extends  \Core\Controller {
 
     public function editAction()
     {
-        echo 'Post Edit';
         var_dump($this->route_params);
     }
 
